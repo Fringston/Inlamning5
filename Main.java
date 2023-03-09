@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
+
 public class Main {
     public static void main(String[] args) {
         ArrayList<Vehicle> vehicles = new ArrayList<>();
 
-        Car car1 = new Car("Volvo", "V40",200, 2017, 5);
+        Car car1 = new Car("Volvo", "V40", 200, 2017, 5);
         vehicles.add(car1);
 
         Truck truck1 = new Truck("Scania", "340", 120, 2015, 4);
@@ -35,6 +36,20 @@ public class Main {
             }
             float fuelNeeded = (float) (2 * i.getFuelConsumption() / 100 * 200);
             System.out.println("För att köra från Göteborg till Malmö krävs det " + fuelNeeded + " liter bränsle.");
+            System.out.println("---------");
+            findCheapest(vehicles);
         }
     }
+    public static void findCheapest (ArrayList<Vehicle> vehicles){
+
+        Vehicle temp = vehicles.get(0);
+        for (int i = 0; i < vehicles.size(); i++) {
+            if (temp.getFuelConsumption() > vehicles.get(i).getFuelConsumption()) {
+                temp = vehicles.get(i);
+            }
+
+        }
+        System.out.println(temp.brand+  " " + temp.model + " " + temp.year + " is the cheapest, it costs: " + temp.getFuelConsumption() + " kr");
+    }
+
 }
